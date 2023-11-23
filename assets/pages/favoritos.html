@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="assets/images/Moviestack_favicon.png" type="image/x-icon">
+    <title>Moviestacks</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="bg-black text-white flex justify-between items-center h-[50px]">
+            <div class="flex items-center gap-2">
+                <img class="h-[35px] w-[35px]" src="/assets/images/4363530.png" alt="" />
+                <h1>MOVIESTACKS</h1>
+            </div>
+            <nav class="flex p-5 gap-3">
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect" href="/index.html">HOME</a>
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect"
+                    href="/assets/pages/movies.html">MOVIES</a>
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect" href="#">FAVS</a>
+            </nav>
+        </header>
+        <main class="flex flex-col flex-grow min-h-[100vh] items-center bg-[url(/assets/images/bg.jpg)] ">
+            <div>
+                <img class="w-[150vw] h-[40vh] object-cover" src="/assets/images/bannercine.jpg" alt="banner">
+            </div>
+
+            <div class="flex flex-wrap gap-7 items-center justify-center" id="contenedorFavs">
+                
+                <template v-if="favoritosFiltrados.length > 0" v-for="favorito in favoritosFiltrados">
+                    <div
+                        class="flex flex-col bg-white items-center border-[3px] h-[400px] w-[250px] rounded-xl text-xs contenedor gap-1">
+                        <img class="h-[200px] w-[90vw] object-cover rounded-lg"
+                            v-bind:src="'https://moviestack.onrender.com/static/' + favorito.image" alt="">
+                        <h2 class="font-bold text-left text-[15px]">{{favorito.title}}</h2>
+                        <h3 class=" text-left font-semibold text-[10px]">{{favorito.tagline}}</h3>
+                        <p class="text-left text-[10px] line-clamp-5 "> {{favorito.overview}}</p>
+                        <a v-bind:href="'/assets/pages/details.html?id='+favorito.id"
+                            class="bg-gray-300 text-gray-600  rounded-md text-[17px] m-[5px] w-[150px] h-[20px] text-center shadow-md shadow-gray-300  ">Details</a>
+                        <button class="bg-black text-white rounded-md w-[50px] shadow-md shadow-black" id="botonFavorito" data-id="{{favorito.id}} "
+                            v-on:click="removeFavs(favorito.id)">Delete</button>
+                    </div>
+                </template>
+                <template v-else>
+                    <h2>No movies added to favorites</h2>
+                </template>
+
+            </div>
+
+
+        </main>
+        <footer class="bg-black h-[50px] text-white text-center flex items-center justify-center">
+            <h2>Mindhub Cohort N 52</h2>
+        </footer>
+    </div>
+
+    <script type="module" src="/tailwind.config.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/assets/js/favs.js"></script>
+</body>
+
+</html>

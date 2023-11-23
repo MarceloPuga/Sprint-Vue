@@ -15,6 +15,7 @@ const opt = {
       search: "",
       select: "all",
       moviesFiltrados: [],
+      favoritos: [],
      
     };
   },
@@ -29,7 +30,8 @@ const opt = {
         this.movies = info.movies
         this.moviesFiltrados = this.movies
         this.generos = [...new Set(this.movies.map(movie => (movie.genres)).flat())]
-       console.log(this.moviesFiltrados)
+        this.favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+       console.log(this.favoritos)
       })
 
       .then((Error) => console.log(Error));
@@ -49,9 +51,25 @@ filtrarPorGenero(event){
 filtrar(){
 const filtrado = this.movies.filter(movie => movie.title.toLowerCase().includes(this.search.toLowerCase()) && ( this.select == "all" || (movie.genres.includes(this.select) )))
 this.moviesFiltrados = filtrado
-}
+},
+addFavs(id) {
+
+  const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+  if (!favoritos.includes(id)) {
+      this.favoritos.push(id)
+      localStorage.setItem('favoritos', JSON.stringify(this.favoritos))
+  }
+  else {
+      this.favoritos = this.favoritos.filter(movie => movie !== id)
+      localStorage.setItem('favoritos', JSON.stringify(this.favoritos))
+  }
+
+},
   },
   create() { },
 };
+
+
+
 const app = createApp(opt);
 app.mount("#app");

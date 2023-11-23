@@ -50,7 +50,7 @@
                         <h3 class=" text-left font-semibold text-[10px]">{{movie.tagline}}</h3>
                         <p class="text-left text-[10px] line-clamp-5 "> {{movie.overview}}</p>
                         <a v-bind:href="'/assets/pages/details.html?id='+movie.id" class="bg-gray-300 text-gray-600  rounded-md text-[17px] m-[5px] w-[150px] h-[20px] text-center shadow-md shadow-gray-300  ">Details</a>
-                        <button id="botonFavorito" data-id="{movie.id}">Favorites</button>
+                        <button  id="botonFavorito" data-id="{{movie.id}}"v-on:click="addFavs(movie.id)">Favorites</button>
                     </div>
                 </template>
             </div>
