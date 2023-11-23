@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="assets/images/Moviestack_favicon.png" type="image/x-icon">
+    <title>Moviestacks</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="bg-black text-white flex justify-between items-center h-[50px]">
+            <div class="flex items-center gap-2">
+                <img class="h-[35px] w-[35px]" src="/assets/images/4363530.png" alt="" />
+                <h1>MOVIESTACKS</h1>
+            </div>
+            <nav class="flex p-5 gap-3">
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect" href="/index.html">HOME</a>
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect" href="#">MOVIES</a>
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect"
+                    href="/assets/pages/favoritos.html">FAVS</a>
+            </nav>
+        </header>
+        <main class="flex flex-col flex-grow min-h-[100vh] items-center bg-[url(/assets/images/bg.jpg)] ">
+            <div>
+                <img class="w-[150vw] h-[40vh] object-cover" src="/assets/images/bannercine.jpg" alt="banner">
+            </div>
+            <div
+                class=" flex border-[2px] h-[50px] p-[5px] items-center rounded-md m-[20px]  w-[50vh] justify-center  cajaSearch">
+                <div class="flex gap-3 ">
+                    <input class="border-[2px] border-grey rounded-md w-[200px] text-center" type="text" placeholder="Search" v-on:input="filtrarPorTitulo">
+                    <select class="w-[130px] border-[2px] border-grey rounded-md" name="select" id="select" v-on:change="filtrarPorGenero">
+                        <option value="all">genres...</option>
+                        <template v-if="generos.length > 0" v-for="genero of generos">
+                            <option v-bind:value="genero">{{genero}}</option>
+                        </template>
+                    </select>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-7 items-center justify-center">
+                <template v-if="moviesFiltrados.length > 0" v-for="movie of moviesFiltrados">
+                    <div
+                        class="flex flex-col bg-white items-center border-[3px] h-[400px] w-[250px] rounded-xl text-xs contenedor gap-1">
+                        <img class="h-[200px] w-[90vw] object-cover rounded-lg"
+                            v-bind:src="'https://moviestack.onrender.com/static/' + movie.image" alt="">
+                        <h2 class="font-bold text-left text-[15px]">{{movie.title}}</h2>
+                        <h3 class=" text-left font-semibold text-[10px]">{{movie.tagline}}</h3>
+                        <p class="text-left text-[10px] line-clamp-5 "> {{movie.overview}}</p>
+                        <a v-bind:href="'/assets/pages/details.html?id='+movie.id" class="bg-gray-300 text-gray-600  rounded-md text-[17px] m-[5px] w-[150px] h-[20px] text-center shadow-md shadow-gray-300  ">Details</a>
+                        <button id="botonFavorito" data-id="{movie.id}">Favorites</button>
+                    </div>
+                </template>
+            </div>
+
+
+        </main>
+        <footer class="bg-black h-[50px] text-white text-center flex items-center justify-center">
+            <h2>Mindhub Cohort N 52</h2>
+        </footer>
+    </div>
+    <script type="module" src="/tailwind.config.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="assets/images/Moviestack_favicon.png" type="image/x-icon">
+    <title>Moviestacks</title>
+</head>
+
+<body>
+    <div id="app">
+        <header class="bg-black text-white flex justify-between items-center h-[50px]">
+            <div class="flex items-center gap-2">
+                <img class="h-[35px] w-[35px]" src="/assets/images/4363530.png" alt="" />
+                <h1>MOVIESTACKS</h1>
+            </div>
+            <nav class="flex p-5 gap-3">
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect" href="/index.html">HOME</a>
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect"
+                    href="/assets/pages/movies.html">MOVIES</a>
+                <a class="hover:bg-white hover:text-black rounded-md p-[2px] zoom-effect"
+                    href="/assets/pages/favoritos.html">FAVS</a>
+            </nav>
+        </header>
+        <main class="flex min-h-screen justify-center gap-4 items-center bg-[url(/assets/images/bg.jpg)] ">
+            <div class="flex gap-7">
+                <template v-if="movie !== ''">
+                    <div
+                        class="flex flex-col gap-3 w-[450px] h-[500px] items-center justify-center rounded-lg bg-white shadow-lg shadow-black">
+                        <img class="flex h-[200px] w-[400px] object-cover"
+                        v-bind:src="'https://moviestack.onrender.com/static/'+ movie.image +'.jpg'" alt=""></img>
+                        <table class=" h-[100px] w-[400px] border-[2px] border-black text-center justify-center">
+                            <tr>
+                                <td class="font-bold">original lenguage</td>
+                                <td>{{movie.original_language}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">release data</td>
+                                <td>{{movie.release_date}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">runtime</td>
+                                <td>{{movie.runtime}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">status</td>
+                                <td>{{movie.status}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div
+                        class="flex flex-col gap-4 w-[450px] h-[500px] items-center justify-center rounded-lg bg-white shadow-lg shadow-black">
+                        <h2> Titulo:{{movie.title}}</h2>
+                        <h3> Slogan: {{movie.tagline}}</h3>
+                        <h4>Genero: {{movie.genres}}</h4>
+                        <p> Descripcion: {{movie.overview}}</p>
+                        <table class="h-[100px] w-[400px] border-[2px] border-black text-center">
+                            <tr>
+                                <td class="font-bold">vote average</td>
+                                <td>{{movie.vote_average}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">budget</td>
+                                <td>{{movie.budget}}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">revenue</td>
+                                <td>{{movie.revenue}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </template>
+            </div>
+        </main>
+        <footer class="bg-black h-[50px] text-white text-center flex items-center justify-center">
+            <h2>Mindhub Cohort N 52</h2>
+        </footer>
+    </div>
+    <script type="module" src="/tailwind.config.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="/assets/js/details.js"></script>
+</body>
+
+</html>
